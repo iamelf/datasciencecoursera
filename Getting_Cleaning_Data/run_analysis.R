@@ -134,9 +134,9 @@ mergeSignals <- function() {
 createSummary <- function (t) {
   message("Creating summary for the average of each variable for each activity and each subject...")
   s <- t %>% group_by(subject, activity) %>% summarize_each(funs(mean))
-  summaryFile <- file.path(cleanDataPath, "summary.csv")
+  summaryFile <- file.path(cleanDataPath, "summary.txt")
   message("Summary data written to: ", summaryFile)
-  write.csv(s, file=summaryFile, row.names = FALSE)
+  write.table(s, file=summaryFile, row.names = FALSE)
   return (s)
 }
 
@@ -145,6 +145,7 @@ createSummary <- function (t) {
 
 main <- function() {
   
+  #### Change to your own working directory
   wd <- "/Users/yuazhuan/R"
   setwd(wd)
   wd <- getwd()
